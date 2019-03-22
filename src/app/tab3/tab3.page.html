@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Groups
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="openSettings()">
+          <ion-icon slot="icon-only" name="settings"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-list class="custom-list">
+          <ion-list-header>
+              <ion-label>List of Groups</ion-label>
+              <ion-button size="small">
+                  <ion-icon (click)="createNewBeat()" name="add" ></ion-icon>
+              </ion-button>
+          </ion-list-header>        
+            <ion-item>
+                <ion-label>Orchestra</ion-label>
+                  <ion-icon (click)="presentActionSheet()" name="options" slot="end"></ion-icon>
+            </ion-item>
+        
+              <ion-item>
+                  
+                <ion-label>Garage Band</ion-label>
+                <ion-icon (click)="presentActionSheet()" name="options" slot="end"></ion-icon>
+      
+          
+              </ion-item>
+          
+        
+                <ion-item>
+                    
+                  <ion-label>Music Band</ion-label>
+                  <ion-icon (click)="presentActionSheet()" name="options" slot="end"></ion-icon>
+      
+            
+                </ion-item>
+            
+            <ion-item>
+                
+              <ion-label>Church Group</ion-label>
+              <ion-icon (click)="presentActionSheet()" name="options" slot="end"></ion-icon>
+        
+            </ion-item>
+      
+            <ion-item>
+                
+                <ion-label>The bad boyz</ion-label>
+                <ion-icon (click)="presentActionSheet()" name="options" slot="end"></ion-icon>
+          
+              </ion-item>
+              
+        </ion-list>
+  </ion-content>
