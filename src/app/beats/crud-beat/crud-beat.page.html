@@ -4,8 +4,8 @@
       <ion-input placeholder="Beat Title"></ion-input>
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="openSettings()">
-        <ion-icon (click)="close()" name="close"></ion-icon>
+      <ion-button slot="icon-only" (click)="close()">
+        <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -48,7 +48,7 @@
 
 <ion-footer>
     <ion-toolbar>
-      <ion-button margin shape="round" expand="full">
+      <ion-button (click)="close()" margin shape="round" expand="full">
         Save
       </ion-button>
     </ion-toolbar>

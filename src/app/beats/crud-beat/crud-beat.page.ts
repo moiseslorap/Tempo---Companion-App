@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonContent } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-crud-beat',
@@ -7,8 +7,6 @@ import { IonContent } from '@ionic/angular';
   styleUrls: ['./crud-beat.page.scss'],
 })
 export class CrudBeatPage implements OnInit {
-
-  @ViewChild(IonContent) content: IonContent;
 
   public sections = [
     {
@@ -19,7 +17,7 @@ export class CrudBeatPage implements OnInit {
       measures: ''
     }
   ]
-  constructor() { }
+  constructor(public modalController: ModalController) { }
 
   ngOnInit() {
   }
@@ -33,5 +31,10 @@ export class CrudBeatPage implements OnInit {
       measures: ''
     }
     this.sections.push(section);
+  }
+
+  async close(){
+    this.modalController.dismiss();
+
   }
 }

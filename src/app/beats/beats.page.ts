@@ -92,40 +92,40 @@ export class BeatsPage {
   }
 
   async openSettings() {
-    const alert = await this.alertController.create({
-      header: 'Write a review',
-      inputs: [
-        {
-          name: 'Title',
-          type: 'text',
-          placeholder: 'Title'
-        },
-        {
-          name: 'Comments',
-          type: 'text',
-          placeholder: 'Comments',
-          id: 'description-box',
-          //value: 'hello',
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: () => {
-            console.log('Confirm Ok');
-          }
-        }
-      ]
-    });
+    // const alert = await this.alertController.create({
+    //   header: 'Write a review',
+    //   inputs: [
+    //     {
+    //       name: 'Title',
+    //       type: 'text',
+    //       placeholder: 'Title'
+    //     },
+    //     {
+    //       name: 'Comments',
+    //       type: 'text',
+    //       placeholder: 'Comments',
+    //       id: 'description-box',
+    //       //value: 'hello',
+    //     },
+    //   ],
+    //   buttons: [
+    //     {
+    //       text: 'Cancel',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: () => {
+    //         console.log('Confirm Cancel');
+    //       }
+    //     }, {
+    //       text: 'Ok',
+    //       handler: () => {
+    //         console.log('Confirm Ok');
+    //       }
+    //     }
+    //   ]
+    // });
 
-    await alert.present();
+    // await alert.present();
   }
 
   async removeBeat(beat) {
