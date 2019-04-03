@@ -3,6 +3,7 @@ import { ActionSheetController, AlertController, PopoverController, ToastControl
 import { AddToPlaylistComponent } from './add-to-playlist/add-to-playlist.component';
 import { ReviewComponent } from './review/review.component';
 import { CrudBeatPage } from './crud-beat/crud-beat.page'
+import {StorageService} from '../services/storage/storage.service'
 @Component({
   selector: 'app-beats',
   templateUrl: 'beats.page.html',
@@ -11,39 +12,15 @@ import { CrudBeatPage } from './crud-beat/crud-beat.page'
 export class BeatsPage {
 
   public beatsList = [
-    {
-      id: 1,
-      name: 'Für Elise',
-      reviews: [
-      ]
-    },
-    {
-      id: 2,
-      name: 'Symphony No.5',
-      reviews: [
-      ]
-    },
-    {
-      id: 3,
-      name: 'The Blue Danube',
-      reviews: [
-      ]
-    },
-    {
-      id: 4,
-      name: 'The Four Seasons',
-      reviews: [
-      ]
-    },
-    {
-      id: 5,
-      name: 'Hotel California',
-      reviews: [
-      ]
-    }
   ]
 
-  constructor(public modalController: ModalController, public toastController: ToastController, public popoverController: PopoverController, public actionSheetController: ActionSheetController, public alertController: AlertController) {}
+  constructor(public storage: StorageService, public modalController: ModalController, public toastController: ToastController, public popoverController: PopoverController, public actionSheetController: ActionSheetController, public alertController: AlertController) {
+    this.storage.getBeats()
+      .then((beats) => {
+        if (beats)
+          this.beatsList = beats;
+      });
+  }
 
   async createNewBeatModal(){
     console.log("button clicked");
@@ -52,7 +29,18 @@ export class BeatsPage {
       component: CrudBeatPage,
       // componentProps: { value: 123 }
     });
+    modal.onDidDismiss()
+      .then((data) => {
+        const beat = data['data']; // Here's your selected user!
+        this.saveBeat(beat);
+    });
+    console.log(this.beatsList);
     return await modal.present();
+  }
+
+  async saveBeat(beat){
+    this.beatsList.push(beat);
+    this.storage.saveBeatsToStorage(this.beatsList); //saves beats array to storage
   }
 
   async sentToSmartWatchToast(beat) {
@@ -188,6 +176,10 @@ export class BeatsPage {
       }]
     });
     await actionSheet.present();
+  }
+
+  ngOnInit() {
+    console.log(this.beatsList);
   }
 
 }

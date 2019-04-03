@@ -8,33 +8,45 @@ import { ModalController } from '@ionic/angular';
 })
 export class CrudBeatPage implements OnInit {
 
-  public sections = [
-    {
-      id: 1,
-      name: '',
-      timeSignature: '',
-      bpm: '',
-      measures: ''
-    }
-  ]
+  name: string;
+  timeSignature: string;
+  bpm: string;
+  measures: string;
+
+  public beat = {
+    id: 0,
+    name: '',
+    reviews: [],
+    beats: []
+  }
+  public sections = [];
+  public emptySection = {
+    name: '',
+    timeSignature: '',
+    bpm: '',
+    measures: ''
+  }
   constructor(public modalController: ModalController) { }
 
   ngOnInit() {
+    this.pushEmptySection();
   }
-
-  async increaseSectionCount(){
-    var section = {
-      id: 2,
-      name: '',
-      timeSignature: '',
-      bpm: '',
-      measures: ''
-    }
-    this.sections.push(section);
+  async pushEmptySection(){
+      this.sections.push(this.emptySection);
   }
 
   async close(){
     this.modalController.dismiss();
+  }
+  async save(){
+    this.sections.forEach(section => {
+      this.beat.beats.push(section);
+    });
+    console.log(this.beat);
+    this.modalController.dismiss(this.beat);
+  }
+
+  async saveToStorage(beat){
 
   }
 }

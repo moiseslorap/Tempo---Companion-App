@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      <ion-input placeholder="Beat Title"></ion-input>
+      <ion-input [(ngModel)]="beat.name"placeholder="Beat Title"></ion-input>
     </ion-title>
     <ion-buttons slot="end">
       <ion-button slot="icon-only" (click)="close()">
@@ -12,15 +12,19 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngFor="let section of sections" class="custom-list">
+  <ion-list *ngFor="let section of sections; let i=index" class="custom-list">
     <ion-list-header>
-      <ion-input placeholder="Beat Section Name"></ion-input>
+      <!-- <ion-input [(ngModel)]="sections[i].name" name="sections{{i}} name" placeholder="Beat Section Name"></ion-input> -->
+      <ion-input name="sections{{i}} name" placeholder="Beat Section Name"></ion-input>
+
       <ion-icon padding (click)="onClick()" name="arrow-down"></ion-icon>
 
     </ion-list-header>
     <ion-item>
       <ion-label slot="start">Time Signature</ion-label>
-      <ion-select class="ion-text-end" slot="end" placeholder="...">
+      <!-- <ion-select [(ngModel)]="sections[i].timeSignature" name="sections{{i}} time" nameclass="ion-text-end" slot="end" placeholder="..."> -->
+
+      <ion-select name="sections{{i}} time" nameclass="ion-text-end" slot="end" placeholder="...">
         <ion-select-option class="ion-text-end" value="4.4">4/4</ion-select-option>
         <ion-select-option class="ion-text-end" value="3.4">3/4</ion-select-option>
         <ion-select-option class="ion-text-end" value="2.4">2/4</ion-select-option>
@@ -29,17 +33,19 @@
     </ion-item>
     <ion-item>
       <ion-label slot="start">Beats per Minute</ion-label>
-      <ion-input class="ion-text-end" slot="end" type="text" placeholder="BPM"></ion-input>
+      <!-- <ion-input [(ngModel)]="sections[i].bpm" name="sections{{i}} bpm" class="ion-text-end" slot="end" type="text" placeholder="BPM"></ion-input> -->
+      <ion-input name="sections{{i}} bpm" class="ion-text-end" slot="end" type="text" placeholder="BPM"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label slot="start">Measures</ion-label>
-      <ion-input class="ion-text-end" slot="end" type="text" placeholder="Measures"></ion-input>
+      <!-- <ion-input [(ngModel)]="sections[i].measures" name="sections{{i}} measures" class="ion-text-end" slot="end" type="text" placeholder="Measures"></ion-input> -->
+      <ion-input name="sections{{i}} measures" class="ion-text-end" slot="end" type="text" placeholder="Measures"></ion-input>
     </ion-item>
   </ion-list>
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="danger" size="small" (click)="increaseSectionCount()">
+    <ion-fab-button color="danger" size="small" (click)="pushEmptySection()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -48,7 +54,7 @@
 
 <ion-footer>
     <ion-toolbar>
-      <ion-button (click)="close()" margin shape="round" expand="full">
+      <ion-button (click)="save()" margin shape="round" expand="full">
         Save
       </ion-button>
     </ion-toolbar>
