@@ -10,6 +10,11 @@ import { ModalController } from '@ionic/angular';
 export class CrudPlaylistPage implements OnInit {
 
   public beatsList = [];
+  public playlists = [];
+  public playlist = {
+    name: '',
+    beats: []
+  }
   constructor(public storage: StorageService, public modalController: ModalController) {
     this.storage.getBeats()
       .then((beats) => {
@@ -21,14 +26,10 @@ export class CrudPlaylistPage implements OnInit {
    async close(){
     this.modalController.dismiss();
   }
-  // async save(){
-  //   this.sections.forEach(section => {
-  //     this.beat.beats.push(section);
-  //   });
-  //   console.log(this.beat);
-  //   this.modalController.dismiss(this.beat);
-  // }
-  
+  async save(){
+    
+    this.modalController.dismiss(this.playlist);
+  }
 
   ngOnInit() {
   }

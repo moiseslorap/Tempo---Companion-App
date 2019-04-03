@@ -46,7 +46,4 @@ export class CrudBeatPage implements OnInit {
     this.modalController.dismiss(this.beat);
   }
 
-  async saveToStorage(beat){
-
-  }
 }

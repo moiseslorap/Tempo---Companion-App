@@ -30,7 +30,7 @@ export class PlayPage {
     modal.onDidDismiss()
       .then((data) => {
         const playlist = data['data']; // Here's your selected user!
-        this.savePlayList(playlist);
+        this.addClassic();
       });
     return await modal.present();
   }
@@ -39,9 +39,17 @@ export class PlayPage {
     this.storage.savePlaylistsToStorage(this.playLists); //saves beats array to storage
   }
 
+  async addClassic(){
+    this.playLists.push({
+      name: 'Classical Music',
+      beats: []
+    })
+  }
+
   ngOnInit(){
     this.playLists.push({
-      name: 'Jazz'
+      name: 'Jazz',
+      beats: []
     })
   }
 }
