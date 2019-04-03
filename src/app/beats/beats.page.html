@@ -16,8 +16,8 @@
   <ion-list class="custom-list">
     <ion-list-header>
       <ion-label>List of Beats</ion-label>
-      <ion-button size="small">
-        <ion-icon (click)="createNewBeat()" name="add"></ion-icon>
+      <ion-button (click)="createNewBeatModal()" size="small">
+        <ion-icon name="add"></ion-icon>
       </ion-button>
     </ion-list-header>
     <ion-item *ngFor="let beat of beatsList">

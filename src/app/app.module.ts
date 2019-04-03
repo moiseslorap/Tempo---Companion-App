@@ -8,14 +8,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddToPlaylistComponent} from './beats/add-to-playlist/add-to-playlist.component';
-import { ReviewComponent} from './beats/review/review.component';
-import {IonicStorageModule} from '@ionic/storage';
+import { AddToPlaylistComponent } from './beats/add-to-playlist/add-to-playlist.component';
+import { ReviewComponent } from './beats/review/review.component';
+import { CrudBeatPageModule } from './beats/crud-beat/crud-beat.module'
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent, AddToPlaylistComponent, ReviewComponent],
   entryComponents: [AddToPlaylistComponent, ReviewComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), CrudBeatPageModule],
   providers: [
     StatusBar,
     SplashScreen,

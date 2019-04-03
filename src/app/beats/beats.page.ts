@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ActionSheetController, AlertController, PopoverController, ToastController } from '@ionic/angular';
-import {AddToPlaylistComponent} from './add-to-playlist/add-to-playlist.component'
-import {ReviewComponent} from './review/review.component'
+import { ActionSheetController, AlertController, PopoverController, ToastController, ModalController } from '@ionic/angular';
+import { AddToPlaylistComponent } from './add-to-playlist/add-to-playlist.component';
+import { ReviewComponent } from './review/review.component';
+import { CrudBeatPage } from './crud-beat/crud-beat.page'
 @Component({
   selector: 'app-beats',
   templateUrl: 'beats.page.html',
@@ -42,9 +43,18 @@ export class BeatsPage {
     }
   ]
 
-  constructor(public toastController: ToastController, public popoverController: PopoverController, public actionSheetController: ActionSheetController, public alertController: AlertController) {}
+  constructor(public modalController: ModalController, public toastController: ToastController, public popoverController: PopoverController, public actionSheetController: ActionSheetController, public alertController: AlertController) {}
 
-  
+  async createNewBeatModal(){
+    console.log("button clicked");
+
+    const modal = await this.modalController.create({
+      component: CrudBeatPage,
+      // componentProps: { value: 123 }
+    });
+    return await modal.present();
+  }
+
   async sentToSmartWatchToast(beat) {
     const toast = await this.toastController.create({
       message: beat.name + ' has been sent to device',
@@ -56,7 +66,7 @@ export class BeatsPage {
   async deletedBeatToast(beat) {
     const toast = await this.toastController.create({
       message: beat.name + ' has been deleted',
-      duration: 2000
+      duration: 1000
     });
     toast.present();
   }
