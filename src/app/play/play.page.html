@@ -39,22 +39,12 @@
   <ion-list class="custom-list">
     <ion-list-header>
       <ion-label>Playlists</ion-label>
-      <ion-button size="small">
-        <ion-icon (click)="createNewBeat()" name="add"></ion-icon>
+      <ion-button (click)="createNewPlaylistModal()" size="small">
+        <ion-icon name="add"></ion-icon>
       </ion-button>
     </ion-list-header>
-    <ion-item>
-      <ion-label>Classical Music</ion-label>
-      <ion-icon (click)="presentActionSheet()" name="play" slot="end"></ion-icon>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Rock'n Roll</ion-label>
-      <ion-icon (click)="presentActionSheet()" name="play" slot="end"></ion-icon>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Jazz</ion-label>
+    <ion-item *ngFor="let playlist of playLists">
+      <ion-label>{{playlist.name}}</ion-label>
       <ion-icon (click)="presentActionSheet()" name="play" slot="end"></ion-icon>
     </ion-item>
 

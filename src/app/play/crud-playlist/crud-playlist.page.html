@@ -12,37 +12,17 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngFor="let section of sections" class="custom-list">
+  <ion-list class="custom-list">
     <ion-list-header>
-      <ion-input placeholder="Beat Section Name"></ion-input>
-      <ion-icon padding (click)="onClick()" name="arrow-down"></ion-icon>
-
+      Beats Selected
     </ion-list-header>
     <ion-item>
-      <ion-label slot="start">Time Signature</ion-label>
-      <ion-select class="ion-text-end" slot="end" placeholder="...">
-        <ion-select-option class="ion-text-end" value="4.4">4/4</ion-select-option>
-        <ion-select-option class="ion-text-end" value="3.4">3/4</ion-select-option>
-        <ion-select-option class="ion-text-end" value="2.4">2/4</ion-select-option>
-        <ion-select-option class="ion-text-end" value="6.8">6/8</ion-select-option>
+      <ion-label>Beats</ion-label>
+      <ion-select multiple="true" slot="end">
+        <ion-select-option *ngFor="let beat of beatsList">{{beats.name}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label slot="start">Beats per Minute</ion-label>
-      <ion-input class="ion-text-end" slot="end" type="text" placeholder="BPM"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label slot="start">Measures</ion-label>
-      <ion-input class="ion-text-end" slot="end" type="text" placeholder="Measures"></ion-input>
-    </ion-item>
   </ion-list>
-
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="danger" size="small" (click)="increaseSectionCount()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 
 </ion-content>
 
