@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  selector: 'app-groups',
+  templateUrl: 'groups.page.html',
+  styleUrls: ['groups.page.scss']
 })
-export class Tab3Page {
+export class GroupsPage {
   constructor(public actionSheetController:ActionSheetController){}
 
   async presentActionSheet() {

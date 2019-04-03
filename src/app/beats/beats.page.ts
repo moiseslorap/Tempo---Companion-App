@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-beats',
+  templateUrl: 'beats.page.html',
+  styleUrls: ['beats.page.scss']
 })
-export class Tab2Page {
+export class BeatsPage {
   constructor(public actionSheetController: ActionSheetController, public alertController: AlertController) {}
 
   async alertReview() {
@@ -82,7 +82,6 @@ export class Tab2Page {
 
     await alert.present();
   }
-
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
