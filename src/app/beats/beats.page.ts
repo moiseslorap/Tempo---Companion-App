@@ -1,49 +1,84 @@
 import { Component } from '@angular/core';
-import { ActionSheetController, AlertController } from '@ionic/angular';
-
+import { ActionSheetController, AlertController, PopoverController, ToastController } from '@ionic/angular';
+import {AddToPlaylistComponent} from './add-to-playlist/add-to-playlist.component'
+import {ReviewComponent} from './review/review.component'
 @Component({
   selector: 'app-beats',
   templateUrl: 'beats.page.html',
   styleUrls: ['beats.page.scss']
 })
 export class BeatsPage {
-  constructor(public actionSheetController: ActionSheetController, public alertController: AlertController) {}
 
-  async alertReview() {
-    const alert = await this.alertController.create({
-      header: 'Write a review',
-      inputs: [
-        {
-          name: 'Title',
-          type: 'text',
-          placeholder: 'Title'
-        },
-        {
-          name: 'Comments',
-          type: 'text',
-          placeholder: 'Comments',
-          id: 'description-box',
-          //value: 'hello',
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: () => {
-            console.log('Confirm Ok');
-          }
-        }
+  public beatsList = [
+    {
+      id: 1,
+      name: 'Für Elise',
+      reviews: [
       ]
-    });
+    },
+    {
+      id: 2,
+      name: 'Symphony No.5',
+      reviews: [
+      ]
+    },
+    {
+      id: 3,
+      name: 'The Blue Danube',
+      reviews: [
+      ]
+    },
+    {
+      id: 4,
+      name: 'The Four Seasons',
+      reviews: [
+      ]
+    },
+    {
+      id: 5,
+      name: 'Hotel California',
+      reviews: [
+      ]
+    }
+  ]
 
-    await alert.present();
+  constructor(public toastController: ToastController, public popoverController: PopoverController, public actionSheetController: ActionSheetController, public alertController: AlertController) {}
+
+  
+  async sentToSmartWatchToast(beat) {
+    const toast = await this.toastController.create({
+      message: beat.name + ' has been sent to device',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async deletedBeatToast(beat) {
+    const toast = await this.toastController.create({
+      message: beat.name + ' has been deleted',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async reviewBeatPopover() {
+    const popover = await this.popoverController.create({
+      component: ReviewComponent,
+      animated: true,
+      showBackdrop: true
+    });
+  
+    await popover.present();
+  }
+
+  async addToPlaylistPopover() {
+    const popover = await this.popoverController.create({
+      component: AddToPlaylistComponent,
+      animated: true,
+      showBackdrop: true
+    });
+  
+    await popover.present();
   }
 
   async openSettings() {
@@ -83,15 +118,22 @@ export class BeatsPage {
     await alert.present();
   }
 
-  async presentActionSheet() {
+  async removeBeat(beat) {
+    for (let index = 0; index < this.beatsList.length; index++) {
+      if(this.beatsList[index] == beat){
+        this.beatsList.splice(index, 1);
+      }      
+    }
+  }
+  async presentActionSheet(beat) {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Options',
+      header: beat.name,
       buttons: [
         {
           text: 'Add to playlist',
           icon: 'add-circle',
           handler: () => {
-            console.log('Add clicked');
+            this.addToPlaylistPopover();
           }
         },
         {
@@ -105,13 +147,14 @@ export class BeatsPage {
         text: 'Send to smartwatch',
         icon: 'send',
         handler: () => {
+          this.sentToSmartWatchToast(beat);
           console.log('Send to Device');
         }
       }, {
         text: 'Review',
         icon: 'star',
         handler: () => {
-          this.alertReview();
+          this.reviewBeatPopover();
           console.log('Review clicked');
         }
       },
@@ -120,6 +163,8 @@ export class BeatsPage {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
+          this.removeBeat(beat);
+          this.deletedBeatToast(beat);
           console.log('Delete clicked');
         }
       },

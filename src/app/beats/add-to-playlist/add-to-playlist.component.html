@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Add to Playlist
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-select placeholder="Select a Playlist">
+      <ion-select-option *ngFor="let playlist of playlists" value="playlist.id">{{playlist.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-button expand="block" slot="end" color="primary">Submit</ion-button>
+  </ion-item>
+</ion-content>
