@@ -21,13 +21,19 @@
           </ion-list-header>        
             <ion-item>
                 <ion-label>Orchestra</ion-label>
-                  <ion-icon (click)="presentActionSheet()" name="more" slot="end"></ion-icon>
+                <ion-button color="medium" (click)="presentActionSheet(beat)" >
+                  <ion-icon name="more" slot="end"></ion-icon>
+                  Options
+                </ion-button>
             </ion-item>
         
               <ion-item>
                   
                 <ion-label>Garage Band</ion-label>
-                <ion-icon (click)="presentActionSheet()" name="more" slot="end"></ion-icon>
+                <ion-button color="medium" (click)="presentActionSheet(beat)" >
+                  <ion-icon name="more" slot="end"></ion-icon>
+                  Options
+                </ion-button>
       
           
               </ion-item>
@@ -36,7 +42,10 @@
                 <ion-item>
                     
                   <ion-label>Music Band</ion-label>
-                  <ion-icon (click)="presentActionSheet()" name="more" slot="end"></ion-icon>
+                  <ion-button color="medium" (click)="presentActionSheet(beat)" >
+                    <ion-icon name="more" slot="end"></ion-icon>
+                    Options
+                  </ion-button>
       
             
                 </ion-item>
@@ -44,16 +53,11 @@
             <ion-item>
                 
               <ion-label>Church Group</ion-label>
-              <ion-icon (click)="presentActionSheet()" name="more" slot="end"></ion-icon>
+              <ion-button color="medium" (click)="presentActionSheet(beat)" >
+                <ion-icon name="more" slot="end"></ion-icon>
+                Options
+              </ion-button>
         
-            </ion-item>
-      
-            <ion-item>
-                
-                <ion-label>The bad boyz</ion-label>
-                <ion-icon (click)="presentActionSheet()" name="more" slot="end"></ion-icon>
-          
-              </ion-item>
-              
+            </ion-item>              
         </ion-list>
   </ion-content>

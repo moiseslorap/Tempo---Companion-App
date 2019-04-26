@@ -15,6 +15,7 @@ export class CrudPlaylistPage implements OnInit {
     name: '',
     beats: []
   }
+  public beats_selected;
   constructor(public storage: StorageService, public modalController: ModalController) {
     this.storage.getBeats()
       .then((beats) => {

@@ -19,13 +19,15 @@
         font-size:1.3em;
         border-bottom: 1px solid grey;
         ion-button{
-            padding-right:2%;
+            padding-right:5%;
         }
     }
     ion-item{
         margin-left: 5%;
-        margin-right: 1%;
         font-size:0.8rem;
+    }
+    ion-icon{
+        padding-right:1%;
     }
 }
 .scrollable-items{

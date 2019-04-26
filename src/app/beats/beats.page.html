@@ -3,11 +3,6 @@
     <ion-title>
       Beats
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="openSettings()">
-        <ion-icon slot="icon-only" name="settings"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -16,13 +11,17 @@
   <ion-list class="custom-list">
     <ion-list-header>
       <ion-label>List of Beats</ion-label>
-      <ion-button (click)="createNewBeatModal()" size="small">
+      <ion-button margin-right (click)="createNewBeatModal()" size="small">
         <ion-icon name="add"></ion-icon>
       </ion-button>
     </ion-list-header>
     <ion-item *ngFor="let beat of beatsList">
       <ion-label>{{beat.name}}</ion-label>
-      <ion-icon (click)="presentActionSheet(beat)" name="more" slot="end"></ion-icon>
+      <ion-button color="medium" (click)="presentActionSheet(beat)" >
+        <ion-icon name="more" slot="end"></ion-icon>
+        Options
+      </ion-button>
+
     </ion-item>
 
   </ion-list>

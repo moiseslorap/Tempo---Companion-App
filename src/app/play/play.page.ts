@@ -11,6 +11,8 @@ import { CrudPlaylistPage } from '../play/crud-playlist/crud-playlist.page'
 export class PlayPage {
 
   public playLists = [];
+  public playlist_selected;
+  public first_beat: string;
 
   constructor(public storage: StorageService, public modalController: ModalController) {
     this.storage.getPlaylists()
@@ -41,15 +43,20 @@ export class PlayPage {
 
   async addClassic(){
     this.playLists.push({
-      name: 'Classical Music',
-      beats: []
+      name: 'Classical',
+      beats: ['Four Seasons', 'Fur Elise']
     })
+  }
+
+  async addToPlayNow(playlist){
+    this.playlist_selected = playlist;
+    this.first_beat = 'Four Seasons';
   }
 
   ngOnInit(){
     this.playLists.push({
       name: 'Jazz',
-      beats: []
+      beats: ['Blues']
     })
   }
 }
